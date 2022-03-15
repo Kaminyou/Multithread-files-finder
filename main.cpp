@@ -16,8 +16,8 @@ using recursive_directory_iterator = std::experimental::filesystem::recursive_di
 using directory_iterator = std::experimental::filesystem::directory_iterator;
 using namespace std;
 
-atomic<unsigned int> nthreads{1} ;
-atomic<unsigned long long> searchFiles{0} ;
+atomic<unsigned int> nthreads{1};
+atomic<unsigned long long> searchFiles{0};
 
 // Construct valid extension
 const unordered_set<string> validExtensions = {"tiff", "tif", "ndpi", "png", "jpg", "jpeg"};
@@ -98,7 +98,7 @@ int main(int argc, char *argv[]) {
     dfs(argv[2], 1, file2path, trie, futures);
     
     // Collection
-    for(auto& f : futures) {
+    for (auto& f : futures) {
         auto v = f.get() ;
         for (auto element : v) {
             for (auto path : element.second) file2path[element.first].push_back(path);
