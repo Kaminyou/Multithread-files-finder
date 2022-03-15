@@ -1,5 +1,5 @@
 # Multithread-files-finder
-Given a prefix list, find files match to each prefix with Trie (multithreading).
+Given a prefix list, find files match to each prefix with Trie (multithreading). Matching for all prefixes in prefix list for one file name is in O(L), where L denotes the # of chars of the file name.
 
 ## Usage
 ### Preparation
