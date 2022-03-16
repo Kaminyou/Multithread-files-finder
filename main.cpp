@@ -51,10 +51,15 @@ unordered_map<string, vector<string>> find_files(fs::path p, Trie* trie) {
     unordered_map<string, vector<string>> file2path;
     
     for (const auto& dirEntry : recursive_directory_iterator(p, fs::directory_options::skip_permission_denied)) {
-        const auto p = dirEntry.path();
-        if (fs::is_regular_file(p)) {
-            ++searchFiles;
-            appendPath(p, trie, file2path);
+        try {
+            const auto p = dirEntry.path();
+            if (fs::is_regular_file(p)) {
+                ++searchFiles;
+                appendPath(p, trie, file2path);
+            }
+        }
+        catch (fs::filesystem_error &e) {
+            cerr << e.what() << endl;
         }
     }
     return file2path;
@@ -62,14 +67,19 @@ unordered_map<string, vector<string>> find_files(fs::path p, Trie* trie) {
 
 void dfs(string root, int depth, unordered_map<string, vector<string>>& file2path, Trie* trie, vector<future<unordered_map<string, vector<string>>>>& futures) {
     for (const auto& dirEntry : directory_iterator(root, fs::directory_options::skip_permission_denied)) {
-        const auto p = dirEntry.path();
-        if (fs::is_directory(p)) {
-            if (depth == MAX_DEPTH) futures.emplace_back(async(launch::async, find_files, p, trie) ) ;
-            else dfs(p.string(), depth + 1, file2path, trie, futures);
+        try {
+            const auto p = dirEntry.path();
+            if (fs::is_directory(p)) {
+                if (depth == MAX_DEPTH) futures.emplace_back(async(launch::async, find_files, p, trie) ) ;
+                else dfs(p.string(), depth + 1, file2path, trie, futures);
+            }
+            else {
+                ++searchFiles;
+                appendPath(p, trie, file2path);
+            }
         }
-        else {
-            ++searchFiles;
-            appendPath(p, trie, file2path);
+        catch (fs::filesystem_error &e) {
+            cerr << e.what() << endl;
         }
     }
 }
