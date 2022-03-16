@@ -1,4 +1,5 @@
-# Multithread-files-finder
+# Multithread files finder
+### Enjoy searching millions of files in few minutes!
 Given a prefix list, find files match to each prefix with Trie (multithreading). Matching for all prefixes in prefix list for one file name is in O(L), where L denotes the # of chars of the file name.
 
 ## Usage
@@ -17,6 +18,7 @@ const unordered_set<string> validExtensions = {"tiff", "tif", "ndpi", "png", "jp
 make
 ```
 ### Execute
+It is recommended to run this program with **root privileges** to search all the files bypassing permission issues.
 ```script
 ./main prefix_list.txt $root_path
 ```
@@ -40,7 +42,7 @@ Elapsed wall-clock time 3 seconds.
 #files search: 49031
 #threads: 227
 ```
-### Bug shooting
+## Bug shooting
 If the following error is encountered, please decrease **`MAX_DEPTH`**. `ulimit -a` can be used to check the maximum thread you can use.
 ```
 terminate called after throwing an instance of ‘std::system_error’ What(): Resource temporarily unavaible
