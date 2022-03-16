@@ -48,4 +48,4 @@ If the following error is encountered, please decrease **`MAX_DEPTH`**. `ulimit 
 terminate called after throwing an instance of ‘std::system_error’ What(): Resource temporarily unavaible
 ```
 ## Note
-You **should not** provide any prefix which is the prefix of another prefix. For example, prefix `ABCD` would be compromised if prefix `ABC` is also provided. 
+You **should not** provide any prefix which is the prefix of another prefix. For example, a prefix `ABCD` would be compromised if a prefix `ABC` is also provided. 
