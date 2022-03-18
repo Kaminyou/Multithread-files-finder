@@ -15,16 +15,16 @@ const unordered_set<string> validExtensions = {"tiff", "tif", "ndpi", "png", "jp
 - **validExtensions:** To specify the extensions which should be considered.
 ### Compile
 ```
-make
+$ make
 ```
 ### Execute
 It is recommended to run this program with **root privileges** to search all the files bypassing permission issues.
 ```script
-./main prefix_list.txt $root_path
+$ ./main [PREFIX_LIST_PATH] [ROOT_PATH]
 ```
 e.g.
 ```
-./main prefix_list.txt /home/
+$ ./main prefix_list.txt /home/
 ```
 ### Output example
 ```script
