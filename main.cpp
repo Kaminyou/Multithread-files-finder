@@ -16,8 +16,9 @@ using recursive_directory_iterator = std::experimental::filesystem::recursive_di
 using directory_iterator = std::experimental::filesystem::directory_iterator;
 using namespace std;
 
-atomic<unsigned int> nthreads{1};
-atomic<unsigned long long> searchFiles{0};
+// Please uncomment the following two lines to get more stat. info
+// atomic<unsigned int> nthreads{1};
+// atomic<unsigned long long> searchFiles{0};
 
 // Construct valid extension
 const unordered_set<string> validExtensions = {"tiff", "tif", "ndpi", "png", "jpg", "jpeg"};
@@ -130,8 +131,10 @@ int main(int argc, char *argv[]) {
     // Stat.
     const auto dur = chrono::steady_clock::now() - start;
     cout << "Elapsed wall-clock time " << chrono::duration_cast<chrono::seconds>(dur).count() << " seconds." << endl;
-    cout << "#files search: " << searchFiles << endl;
-    cout << "#threads: " << nthreads << endl;
+    
+    // Please uncomment the following two lines to get more stat. info
+    // cout << "#files search: " << searchFiles << endl;
+    // cout << "#threads: " << nthreads << endl;
 
     return 0;
 }

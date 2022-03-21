@@ -17,6 +17,19 @@ const unordered_set<string> validExtensions = {"tiff", "tif", "ndpi", "png", "jp
 ```
 $ make
 ```
+### Uncomment stat. info (option)
+As atomic operations would make the process slower, they are commented out by default. You can uncomment them in `main.cpp` if more stat. info is required.
+```cpp
+// Please uncomment the following two lines to get more stat. info
+// atomic<unsigned int> nthreads{1};
+// atomic<unsigned long long> searchFiles{0};
+```
+```cpp
+// Please uncomment the following two lines to get more stat. info
+// cout << "#files search: " << searchFiles << endl;
+// cout << "#threads: " << nthreads << endl;
+```
+
 ### Execute
 It is recommended to run this program with **root privileges** to search all the files bypassing permission issues.
 ```script
