@@ -9,7 +9,6 @@
 #include <future>
 #include <chrono>
 #include "trie.h"
-#define MAX_DEPTH 5
 
 namespace fs = std::experimental::filesystem;
 using recursive_directory_iterator = std::experimental::filesystem::recursive_directory_iterator;
@@ -20,6 +19,7 @@ using namespace std;
 // atomic<unsigned int> nthreads{1};
 // atomic<unsigned long long> searchFiles{0};
 
+const int MAX_DEPTH = 5;
 // Construct valid extension
 const unordered_set<string> validExtensions = {"tiff", "tif", "ndpi", "png", "jpg", "jpeg"};
 
